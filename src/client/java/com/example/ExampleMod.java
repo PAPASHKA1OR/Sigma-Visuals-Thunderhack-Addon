@@ -21,7 +21,7 @@ public class ExampleMod implements IAddon {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		//LOGGER.info("Hello Fabric world!");
 	}
 
 	@Override
