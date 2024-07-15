@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.example.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "LivingEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ],
+  "refmap": "thunderhack-refmap.json"
+}

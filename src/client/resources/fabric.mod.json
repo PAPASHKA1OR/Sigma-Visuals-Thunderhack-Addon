@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "modid",
+	"version": "${version}",
+	"name": "Sigma Visuals Addon",
+	"description": "The first addon for thunder hack",
+	"authors": [
+		"cvs0"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"mixins": [
+		"asd.mixins.json"
+	],
+	"license": "CC0-1.0",
+	"icon": "assets/modid/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"thunderhack": [
+			"com.example.ExampleMod"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.10",
+		"minecraft": "~1.20.6",
+		"java": ">=21"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
