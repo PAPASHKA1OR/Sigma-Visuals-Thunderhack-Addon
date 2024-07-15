@@ -5,11 +5,11 @@
 	"name": "Sigma Visuals Addon",
 	"description": "The first addon for thunder hack",
 	"authors": [
-		"cvs0"
+		"PAPASHKA"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/PAPASHKA1OR/Sigma-Visuals-Thunderhack-Addon/",
+		"sources": "https://github.com/PAPASHKA1OR/Sigma-Visuals-Thunderhack-Addon/"
 	},
 	"mixins": [
 		"asd.mixins.json"
