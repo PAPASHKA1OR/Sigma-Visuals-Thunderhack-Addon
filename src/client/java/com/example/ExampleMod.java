@@ -21,7 +21,7 @@ public class ExampleMod implements IAddon {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		//LOGGER.info("Hello Fabric world!");
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class ExampleMod implements IAddon {
 
 	@Override
 	public List<Command> getCommands() {
-		return Arrays.asList(new ExampleCommand());
+		return Arrays.asList();
 	}
 
 	@Override
 	public List<HudElement> getHudElements() {
-		return Arrays.asList(new ExampleHudElement());
+		return Arrays.asList();
 	}
 
 	@Override
@@ -47,16 +47,16 @@ public class ExampleMod implements IAddon {
 
 	@Override
 	public String getName() {
-		return "ExampleMod";
+		return "SigmaVisuals";
 	}
 
 	@Override
 	public String getAuthor() {
-		return "cvs0";
+		return "PAPASHKA";
 	}
 
 	@Override
 	public String getRepo() {
-		return "https://github.com/cvs0/ThunderHack-Recode-Addon-Template";
+		return "https://github.com/PAPASHKA1OR/Sigma-Visuals-Thunderhack-Addon/";
 	}
 }
