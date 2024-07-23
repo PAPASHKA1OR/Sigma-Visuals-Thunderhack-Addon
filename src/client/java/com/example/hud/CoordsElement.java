@@ -1,11 +1,12 @@
 package com.example.hud;
 
+import com.example.helpers.Render;
+import com.example.modules.Themes;
 import thunder.hack.gui.hud.HudElement;
 
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import thunder.hack.gui.font.FontRenderers;
-import thunder.hack.gui.hud.HudElement;
 import thunder.hack.modules.client.HudEditor;
 import thunder.hack.setting.Setting;
 import thunder.hack.utility.player.PlayerUtility;
@@ -13,14 +14,12 @@ import thunder.hack.utility.render.Render2DEngine;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
 import java.awt.*;
 
-public class ExampleHudElement extends HudElement {
-    public ExampleHudElement() {
-        super("Custom Coords", 100, 10);
+public class CoordsElement extends HudElement {
+    public CoordsElement() {
+        super("Sigma Coords", 100, 10);
     }
 
     private final Identifier icon = new Identifier("thunderhack", "textures/hud/icons/coords.png");
@@ -46,19 +45,20 @@ public class ExampleHudElement extends HudElement {
 
         float pX = getPosX() > mc.getWindow().getScaledWidth() / 2f ? getPosX() - FontRenderers.getModulesRenderer().getStringWidth(coordinates) : getPosX();
 
-        if (HudEditor.hudStyle.is(HudEditor.HudStyle.Blurry)) {
-            Render2DEngine.drawRoundedBlur(context.getMatrices(), pX, getPosY(), FontRenderers.getModulesRenderer().getStringWidth(coordinates) + 21, 13f, 3, HudEditor.blurColor.getValue().getColorObject());
-            Render2DEngine.drawRect(context.getMatrices(), pX + 14, getPosY() + 2, 0.5f, 8, new Color(0x44FFFFFF, true));
 
-            Render2DEngine.setupRender();
-            RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE);
-            RenderSystem.setShaderTexture(0, icon);
-            Render2DEngine.renderGradientTexture(context.getMatrices(), pX + 2, getPosY() + 1, 10, 10, 0, 0, 512, 512, 512, 512,
-                    HudEditor.getColor(270), HudEditor.getColor(0), HudEditor.getColor(180), HudEditor.getColor(90));
-            Render2DEngine.endRender();
+        Render.clientRect(context.getMatrices(), pX, getPosY(), FontRenderers.getModulesRenderer().getStringWidth(coordinates) + 21, 13f);
+        Render2DEngine.setupRender();
+        RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE);
+        RenderSystem.setShaderTexture(0, icon);
+        Render2DEngine.renderGradientTexture(context.getMatrices(), pX + 2, getPosY() + 1, 10, 10, 0, 0, 512, 512, 512, 512,
+                Themes.miscColor.getValue().getColorObject(),
+                Themes.miscColor.getValue().getColorObject(),
+                Themes.miscColor.getValue().getColorObject(),
+                Themes.miscColor.getValue().getColorObject());
+        Render2DEngine.endRender();
 
-        }
-        FontRenderers.getModulesRenderer().drawString(context.getMatrices(), coordinates, pX + 18, getPosY() + 5, HudEditor.getColor(1).getRGB());
+
+        FontRenderers.getModulesRenderer().drawString(context.getMatrices(), coordinates, pX + 18, getPosY() + 5, Themes.miscColor.getValue().getColor());
         setBounds(pX, getPosY(), FontRenderers.getModulesRenderer().getStringWidth(coordinates) + 21, 13f);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.modules;
 
+import com.example.helpers.Render;
 import com.example.helpers.compactAnims.CompactAnimation;
 import com.example.helpers.compactAnims.Easing;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -19,23 +20,7 @@ public class ExampleModule extends Module  {
     public ExampleModule() {//BESTCLIENTSUKATOCHNONEKRASHITOTSVICHKIBLYAAA
         super("Jump Circles 2", Category.getCategory("Sigma Visuals"));
     }
-    public static int astolfo(int speed, int offset, float saturation, float brightness, float alpha) {
-        float hue = (float) calculateHueDegrees(speed, offset);
-        hue = (float) ((double) hue % 360.0);
-        float hueNormalized;
-        return Render2DEngine.applyOpacity(
-                Color.HSBtoRGB((double) ((hueNormalized = hue % 360.0F) / 360.0F) < 0.5 ? -(hueNormalized / 360.0F) : hueNormalized / 360.0F, saturation, brightness),
-                Math.max(0, Math.min(255, (int) (alpha * 255.0F)))
-        );
-    }
-    private static int calculateHueDegrees(int divisor, int offset) {
-        long currentTime = System.currentTimeMillis();
-        long calculatedValue = (currentTime / divisor + offset) % 360L;
-        return (int) calculatedValue;
-    }
-    public int getColor(int index) {
-        return astolfo(15, index, 0.6f, 1, 1);
-    }
+
     public static List<Circle>circles = new ArrayList<>();
 
     @Override
@@ -74,7 +59,7 @@ public class ExampleModule extends Module  {
                 double cos = Math.cos(Math.toRadians(i * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * (radius - (radius / 100 * shadowSize))), (float) y, (float) (z + cos * (radius - (radius / 100 * shadowSize)))).color(0, 0, 0, 0).next();
 
-                Color color = new Color(getColor((int) ((i + circles.indexOf(c) * 2) * 12)));
+                Color color = Render.getColor((int) ((i + circles.indexOf(c) * 2) * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * radius), (float) y, (float) (z + cos * radius)).color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, alpha * 0.8f).next();
             }
             BufferRenderer.drawWithGlobalProgram(buffer.end());
@@ -86,7 +71,7 @@ public class ExampleModule extends Module  {
                 double sin = Math.sin(Math.toRadians(i * 12));
                 double cos = Math.cos(Math.toRadians(i * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * (radius + (radius / 100 * shadowSize))), (float) y, (float) (z + cos * (radius + (radius / 100 * shadowSize)))).color(0, 0, 0, 0).next();
-                Color color = new Color(getColor((int) ((i + circles.indexOf(c) * 2) * 12)));
+                Color color = Render.getColor((int) ((i + circles.indexOf(c) * 2) * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * radius), (float) y, (float) (z + cos * radius)).color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, alpha * 0.8f).next();
             }
             BufferRenderer.drawWithGlobalProgram(buffer.end());
@@ -99,7 +84,7 @@ public class ExampleModule extends Module  {
                 double cos = Math.cos(Math.toRadians(i * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * (radius - (radius / 100 * shadowSize))), (float) y, (float) (z + cos * (radius - (radius / 100 * shadowSize)))).color(0, 0, 0, 0).next();
 
-                Color color = new Color(getColor((int) ((i + circles.indexOf(c) * 2) * 12)));
+                Color color = Render.getColor((int) ((i + circles.indexOf(c) * 2) * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * radius), (float) y, (float) (z + cos * radius)).color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, alpha).next();
             }
             BufferRenderer.drawWithGlobalProgram(buffer.end());
@@ -111,7 +96,7 @@ public class ExampleModule extends Module  {
                 double sin = Math.sin(Math.toRadians(i * 12));
                 double cos = Math.cos(Math.toRadians(i * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * radius), (float) y + 0.5f, (float) (z + cos * radius)).color(0, 0, 0, 0).next();
-                Color color = new Color(getColor((int) ((i + circles.indexOf(c) * 2) * 12)));
+                Color color = Render.getColor((int) ((i + circles.indexOf(c) * 2) * 12));
                 buffer.vertex(matrixStack.peek().getPositionMatrix(), (float) (x - sin * radius), (float) y, (float) (z + cos * radius)).color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, alpha * 0.5f).next();
             }
             BufferRenderer.drawWithGlobalProgram(buffer.end());
